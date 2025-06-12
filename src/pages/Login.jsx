@@ -12,6 +12,7 @@ import {
   Eye,
   EyeOff,
 } from "lucide-react";
+import toast from "react-hot-toast";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -23,7 +24,7 @@ export default function Login() {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
-      navigate(user.isAdmin ? "/admin" : "/dashboard");
+      navigate(user.isAdmin ? "/admin/payout" : "/dashboard");
     }
   }, [navigate]);
 
@@ -37,10 +38,12 @@ export default function Login() {
         "user",
         JSON.stringify({ email: user.email, isAdmin })
       );
-      navigate(isAdmin ? "/admin" : "/dashboard");
+      toast.success("Login successful!");
+      navigate(isAdmin ? "/admin/payout" : "/dashboard");
     } catch (err) {
       console.error(err);
       setError("Invalid credentials");
+      toast.error("Login failed. Check credentials.");
     }
   };
 
@@ -53,10 +56,12 @@ export default function Login() {
         "user",
         JSON.stringify({ email: user.email, isAdmin })
       );
-      navigate(isAdmin ? "/admin" : "/dashboard");
+      toast.success("Google login successful!");
+      navigate(isAdmin ? "/admin/payout" : "/dashboard");
     } catch (err) {
       console.error(err);
       setError("Google sign-in failed");
+      toast.error("Google sign-in failed");
     }
   };
 
@@ -64,8 +69,8 @@ export default function Login() {
     <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-white to-slate-200 flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden animate-fade-in-up">
         {/* Header */}
-        <div className="bg-indigo-600 p-6 text-white text-center flex flex-col items-center justify-center gap-2">
-          <ShieldCheck size={36} className="text-white" />
+        <div className="bg-indigo-600 p-6 text-white text-center flex flex-col items-center gap-2">
+          <ShieldCheck size={36} />
           <h2 className="text-2xl font-bold">Welcome Back!</h2>
           <p className="text-sm text-indigo-100">
             Secure access to your dashboard
@@ -93,7 +98,6 @@ export default function Login() {
 
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-indigo-500" />
-
               <input
                 type={showPassword ? "text" : "password"}
                 value={password}
@@ -102,7 +106,6 @@ export default function Login() {
                 className="w-full pl-10 pr-10 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
                 required
               />
-
               <button
                 type="button"
                 onClick={() => setShowPassword((prev) => !prev)}

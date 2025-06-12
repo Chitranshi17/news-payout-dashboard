@@ -8,6 +8,7 @@ import BlogDetails from "./pages/BlogDetails";
 import AdminPayout from "./pages/Admin/AdminPayout";
 import AdminPanel from "./pages/AdminPanel";
 import { Toaster } from "react-hot-toast";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -30,11 +31,9 @@ function App() {
           </Route>
 
           <Route path="/admin" element={<AdminPanel />}>
-            {/* <Route index element= {<AdminOverview />} /> */}
             <Route path="payout" element={<AdminPayout />} />
-            {/* <Route path="blogs" element={<AdminBlogs />} />
-    <Route path="news" element={<AdminNews />} /> */}
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </>
