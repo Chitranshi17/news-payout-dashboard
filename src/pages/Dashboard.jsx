@@ -142,7 +142,7 @@ export default function Dashboard() {
 
           <section
             className="flex items-center gap-4 md:flex-col md:items-center md:text-center p-4 rounded-xl border-l-4 border-indigo-500 shadow"
-            style={{ backgroundColor: "var(--bg-main)" }}
+            style={{ backgroundColor: "var(--bg-card)" }}
           >
             <img
               src="/img.jpg"
@@ -156,11 +156,13 @@ export default function Dashboard() {
               >
                 {user?.name || "User"}
               </h3>
-              <p className="text-sm" style={{ color: "var(--text-subtle)" }}>
+              <p
+                className="text-sm break-all"
+                style={{ color: "var(--text-subtle)" }}
+              >
                 {user?.email || "johndoe@example.com"}
               </p>
-
-              <span className="mt-1 inline-block text-xs px-2 py-1 border border-indigo-200 text-indigo-600 rounded-full">
+              <span className="mt-1 inline-block text-xs px-2 py-1 bg-white border border-indigo-200 text-indigo-600 rounded-full dark:bg-gray-800 dark:border-gray-600 dark:text-indigo-300">
                 Role: {user?.role || "User"}
               </span>
             </div>
@@ -195,8 +197,7 @@ export default function Dashboard() {
           className="w-full bg-indigo-100 dark:bg-gray-700 hover:bg-indigo-200 dark:hover:bg-gray-600 py-2 rounded-xl text-indigo-600 dark:text-white font-semibold shadow-md transition-all"
         >
           {theme === "light" ? "🌙 Dark" : "☀️ Light"}
-        </button>
-        ;{" "}
+        </button>{" "}
         <button
           onClick={handleLogout}
           className="w-full bg-rose-500 hover:bg-rose-600 py-2 rounded-xl text-white font-semibold shadow-md transition-all mt-4"
